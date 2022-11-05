@@ -38,51 +38,49 @@
                         </thead>
                         <tbody>
                             @foreach($results['results'] as $result)
-                                @if($result['media_type'] != 'person')
-                                    @php 
-                                        $img = '';
-                                        if (isset($result['poster_path'])) {
-                                            $img = $result['poster_path'];
-                                        } else if (isset($result['backdrop_path'])) {
-                                            $img = $result['backdrop_path'];
-                                        }
-                                        $url = ($img != '') ? "https://image.tmdb.org/t/p/original$img" : null;
-                                        
-                                        $name = '';
-                                        if (isset($result['original_name'])) {
-                                            $name = $result['original_name'];
-                                        } else if (isset($result['original_title'])) {
-                                            $name = $result['original_title'];
-                                        } else if (isset($result['name'])) {
-                                            $name = $result['name'];
-                                        } 
-                                        
-                                        $resume = '';
-                                        if (isset($result['overview'])) {
-                                            $resume = $result['overview'];
-                                        } 
+                                @php 
+                                    $img = '';
+                                    if (isset($result['poster_path'])) {
+                                        $img = $result['poster_path'];
+                                    } else if (isset($result['backdrop_path'])) {
+                                        $img = $result['backdrop_path'];
+                                    }
+                                    $url = ($img != '') ? "https://image.tmdb.org/t/p/original$img" : null;
+                                    
+                                    $name = '';
+                                    if (isset($result['original_name'])) {
+                                        $name = $result['original_name'];
+                                    } else if (isset($result['original_title'])) {
+                                        $name = $result['original_title'];
+                                    } else if (isset($result['name'])) {
+                                        $name = $result['name'];
+                                    } 
+                                    
+                                    $resume = '';
+                                    if (isset($result['overview'])) {
+                                        $resume = $result['overview'];
+                                    } 
 
-                                        $date = '';
-                                        if (isset($result['first_air_date'])) {
-                                            $date = $result['first_air_date'];
-                                        } else if (isset($result['release_date'])) {
-                                            $date = $result['release_date'];
-                                        }
-                                        $year = explode('-', $date)[0];
-                                    @endphp
-                                    <tr>
-                                        <th scope="row">
-                                            @if ($url != null)
-                                                <img width="150" height="210" src="{{ $url }}">
-                                            @else 
-                                                Sem imagem disponível
-                                            @endif
-                                        </th>
-                                        <td>{{ $name }}</td>
-                                        <td>{{ $resume }}</td>
-                                        <td>{{ $year }}</td>
-                                    </tr>
-                                @endif
+                                    $date = '';
+                                    if (isset($result['first_air_date'])) {
+                                        $date = $result['first_air_date'];
+                                    } else if (isset($result['release_date'])) {
+                                        $date = $result['release_date'];
+                                    }
+                                    $year = explode('-', $date)[0];
+                                @endphp
+                                <tr>
+                                    <th scope="row">
+                                        @if ($url != null)
+                                            <img width="150" height="210" src="{{ $url }}">
+                                        @else 
+                                            Sem imagem disponível
+                                        @endif
+                                    </th>
+                                    <td>{{ $name }}</td>
+                                    <td>{{ $resume }}</td>
+                                    <td>{{ $year }}</td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
