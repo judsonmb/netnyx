@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('search') }}" method="POST">
+                    <form action="{{ route('search') }}" method="GET">
                         @csrf
                         <div class="input-group">
                             <input type="text" 
@@ -24,6 +24,7 @@
                                    placeholder="Digite aqui o filme ou série que deseja buscar" 
                                    required>
                             <button type="submit" class="btn btn-primary">Buscar</button>
+                            
                             @error('movie')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

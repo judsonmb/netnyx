@@ -12,11 +12,11 @@ class SearchService
         return $response->json()['request_token'];
     }
 
-    public function searchMovieOrSerie(array $data)
+    public function searchMovieOrSerie(array $data, string $movie, int $page)
     {
         $token = $this->getToken();
-        $movie = $data['movie'];
-        $url = config('constants.apiUrl') . "/search/multi?api_key=".config('constants.apiKey')."&query=$movie&page=1";
+        $query = $data['movie'] ?? $movie;
+        $url = config('constants.apiUrl') . "/search/multi?api_key=".config('constants.apiKey')."&query=$query&page=$page";
         return Http::get($url)->json();
     }
 }
