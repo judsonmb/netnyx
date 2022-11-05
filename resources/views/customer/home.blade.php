@@ -20,7 +20,7 @@
                             <input type="text" 
                                    class="form-control @error('movie') is-invalid @enderror" 
                                    id="movie" name="movie" maxlength="255" 
-                                   value="{{ old('email') }}" 
+                                   value="{{ old('movie') }}" 
                                    placeholder="Digite aqui o filme ou série que deseja buscar" 
                                    required>
                             <button type="submit" class="btn btn-primary">Buscar</button>

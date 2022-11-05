@@ -1,0 +1,94 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <form action="{{ route('search') }}" method="POST">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" 
+                                   class="form-control @error('movie') is-invalid @enderror" 
+                                   id="movie" name="movie" maxlength="255" 
+                                   value="{{ app('request')->input('movie') ?? '' }}" 
+                                   placeholder="Digite aqui o filme ou série que deseja buscar" 
+                                   required>
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                            @error('movie')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </form>    
+
+                </div>
+
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Resumo</th>
+                                <th scope="col">Ano de lançamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($results['results'] as $result)
+                                @if($result['media_type'] != 'person')
+                                    @php 
+                                        $img = '';
+                                        if (isset($result['poster_path'])) {
+                                            $img = $result['poster_path'];
+                                        } else if (isset($result['backdrop_path'])) {
+                                            $img = $result['backdrop_path'];
+                                        }
+                                        $url = ($img != '') ? "https://image.tmdb.org/t/p/original$img" : null;
+                                        
+                                        $name = '';
+                                        if (isset($result['original_name'])) {
+                                            $name = $result['original_name'];
+                                        } else if (isset($result['original_title'])) {
+                                            $name = $result['original_title'];
+                                        } else if (isset($result['name'])) {
+                                            $name = $result['name'];
+                                        } 
+                                        
+                                        $resume = '';
+                                        if (isset($result['overview'])) {
+                                            $resume = $result['overview'];
+                                        } 
+
+                                        $date = '';
+                                        if (isset($result['first_air_date'])) {
+                                            $date = $result['first_air_date'];
+                                        } else if (isset($result['release_date'])) {
+                                            $date = $result['release_date'];
+                                        }
+                                        $year = explode('-', $date)[0];
+                                    @endphp
+                                    <tr>
+                                        <th scope="row">
+                                            @if ($url != null)
+                                                <img width="150" height="210" src="{{ $url }}">
+                                            @else 
+                                                Sem imagem disponível
+                                            @endif
+                                        </th>
+                                        <td>{{ $name }}</td>
+                                        <td>{{ $resume }}</td>
+                                        <td>{{ $year }}</td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
