@@ -16,9 +16,10 @@ class SearchController extends Controller
         $this->service = new SearchService();
     }
 
-    public function doSearch(SearchRequest $request) 
+    public function doSearch(SearchRequest $request, string $movie, int $page = 1) 
     {
-        $results = $this->service->searchMovieOrSerie($request->all());
-        return view(Auth::user()->role.'.search-results', compact('results'));
+        $results = $this->service->searchMovieOrSerie($request->all(), $movie, $page);
+        $movie = $request->movie ?? $movie;
+        return view(Auth::user()->role.'.search-results', compact('results', 'movie'));
     }
 }

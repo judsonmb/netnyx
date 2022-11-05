@@ -6,13 +6,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <form action="{{ route('search') }}" method="POST">
+                    <form action="{{ route('search') }}" method="GET">
                         @csrf
                         <div class="input-group">
                             <input type="text" 
                                    class="form-control @error('movie') is-invalid @enderror" 
                                    id="movie" name="movie" maxlength="255" 
-                                   value="{{ app('request')->input('movie') ?? '' }}" 
+                                   value="{{ $movie }}" 
                                    placeholder="Digite aqui o filme ou série que deseja buscar" 
                                    required>
                             <button type="submit" class="btn btn-primary">Buscar</button>
@@ -87,6 +87,23 @@
                         </tbody>
                     </table>
                 </div>
+                @if ($results['total_pages'] > 1)
+                    <div class="card-footer" style="max-width: 100%; overflow: scroll;">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                @if ($results['page'] > 1) 
+                                    <li class="page-item"><a class="page-link" href="{{ route('search', [$movie, $results['page']-1]) }}">Anterior</a></li>
+                                @endif
+                                @for ($i = 1; $i <= $results['total_pages']; $i++)
+                                    <li class="page-item"><a class="page-link" href="{{ route('search', [$movie, $i]) }}">{{ $i }}</a></li>
+                                @endfor
+                                @if ($results['page']+1 < $results['total_pages']) 
+                                    <li class="page-item"><a class="page-link" href="{{ route('search', [$movie, $results['page']+1]) }}">Próxima</a></li>
+                                @endif
+                            </ul>
+                        </nav>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

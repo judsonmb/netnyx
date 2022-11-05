@@ -24,14 +24,14 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'movie' => 'required|max:255'
+            'movie' => 'max:255',
+            'page' => 'integer'
         ];
     }
 
     public function messages()
     {
         return [
-            'movie.required' => 'Este campo é obrigatório',
             'movie.max' => 'O campo de busca de filme ou série não pode ser superior a 255 caracteres.'
         ];
     }
