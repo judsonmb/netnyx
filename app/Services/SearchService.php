@@ -15,5 +15,8 @@ class SearchService
     public function searchMovieOrSerie(array $data)
     {
         $token = $this->getToken();
+        $movie = $data['movie'];
+        $url = config('constants.apiUrl') . "/search/multi?api_key=".config('constants.apiKey')."&query=$movie&page=1";
+        return Http::get($url)->json();
     }
 }
