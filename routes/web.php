@@ -23,3 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/search', [App\Http\Controllers\SearchController::class, 'doSearch'])->name('search');
+});

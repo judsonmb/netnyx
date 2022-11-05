@@ -14,10 +14,21 @@
                         </div>
                     @endif
 
-                    <form action="#" method="POST">
+                    <form action="{{ route('search') }}" method="POST">
+                        @csrf
                         <div class="input-group">
-                            <input type="text" class="form-control" id="movie" maxlength="255" placeholder="Digite aqui o filme ou série que deseja buscar" required>
+                            <input type="text" 
+                                   class="form-control @error('movie') is-invalid @enderror" 
+                                   id="movie" name="movie" maxlength="255" 
+                                   value="{{ old('email') }}" 
+                                   placeholder="Digite aqui o filme ou série que deseja buscar" 
+                                   required>
                             <button type="submit" class="btn btn-primary">Buscar</button>
+                            @error('movie')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </form>
                 </div>
