@@ -82,7 +82,7 @@
                                     <td>{{ $resume }}</td>
                                     <td>{{ $year }}</td>
                                     @if ($result['media_type'] != 'person')
-                                        <td><a><button type="button" class="btn btn-primary">Alugar</button></a></td>
+                                        <td><a href="{{ route('movie-details', [$result['id'],$result['media_type']]) }}"><button type="button" class="btn btn-primary">Alugar</button></a></td>
                                     @endif
                                 </tr>
                             @endforeach

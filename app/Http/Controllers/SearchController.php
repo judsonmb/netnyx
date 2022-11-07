@@ -16,7 +16,7 @@ class SearchController extends Controller
         $this->service = new SearchService();
     }
 
-    public function doSearch(SearchRequest $request, string $movie, int $page = 1) 
+    public function search(SearchRequest $request, string $movie = "a", int $page = 1) 
     {
         $results = $this->service->searchMovieOrSerie($request->all(), $movie, $page);
         $movie = $request->movie ?? $movie;
