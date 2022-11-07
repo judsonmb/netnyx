@@ -17,6 +17,8 @@ class CreateRentsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->integer('media_id');
+            $table->string('media_name');
+            $table->string('media_img')->nullable();
             $table->datetime('expire_at');
             $table->timestamps();
         });
