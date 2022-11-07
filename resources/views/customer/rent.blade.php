@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="card" style="text-align:center;">
             <div class="card-header">
-                <a href="#"><button type="button" class="btn btn-success">Confirmar</button></a>
+                <a href="{{ route('rent', $result['id']) }}"><button type="button" class="btn btn-success">Confirmar</button></a>
                 <a href="#"><button type="button" class="btn btn-primary" onclick="history.go(-1)">Voltar</button></a>
             </div>
 
