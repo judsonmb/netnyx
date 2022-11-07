@@ -32,7 +32,7 @@
                 <div> 
                     <h3>{{ $name }}</h3>
                     @if ($url != null)
-                        <img width="500" height="600" src="{{ $url }}">
+                        <img width="1000" height="600" src="{{ $url }}">
                     @else 
                         Sem capa disponível
                     @endif
