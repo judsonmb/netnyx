@@ -10,6 +10,6 @@ class AdminController extends Controller
     public function index()
     {
         $rents = (new RentService)->getRents();
-        return view('admin.admin', compact('rents'));
+        return view(Auth::user()->role.'.admin', compact('rents'));
     }
 }
