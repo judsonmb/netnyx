@@ -11,4 +11,10 @@ class SearchService
         $url = config('constants.apiUrl') . "/search/multi?api_key=".config('constants.apiKey')."&query=$query&page=$page";
         return Http::get($url)->json();
     }
+
+    public function getMovieOrSerie(int $id, string $media)
+    {
+        $url = config('constants.apiUrl') . "/$media/$id?api_key=".config('constants.apiKey')."&language=en-US";
+        return Http::get($url)->json();
+    }
 }
