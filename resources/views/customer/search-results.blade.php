@@ -34,6 +34,7 @@
                                 <th scope="col">Nome</th>
                                 <th scope="col">Resumo</th>
                                 <th scope="col">Ano de lançamento</th>
+                                <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,6 +81,10 @@
                                     <td>{{ $name }}</td>
                                     <td>{{ $resume }}</td>
                                     <td>{{ $year }}</td>
+                                    
+                                    @if ($result['media_type'] != 'person')
+                                        <td><a><button type="button" class="btn btn-primary">Alugar</button></a></td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
