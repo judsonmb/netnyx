@@ -81,6 +81,7 @@
                                     <td>{{ $name }}</td>
                                     <td>{{ $resume }}</td>
                                     <td>{{ $year }}</td>
+                                    
                                     @if ($result['media_type'] != 'person')
                                         <td><a><button type="button" class="btn btn-primary">Alugar</button></a></td>
                                     @endif
