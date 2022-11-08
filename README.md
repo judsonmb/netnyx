@@ -1,4 +1,4 @@
-# Instalação (ambiente linux)
+# Instalação
 
 **Instalações prévias**
 
@@ -16,6 +16,10 @@ sudo apt install php7.4-{simplexml,zip,intl,mbstring,dom,curl,gd,mysql}
 **Instalando o projeto github** 
 
 - clone o projeto em seu computador
+
+```
+git clone https://github.com/judsonmb/netnyx.git
+```
 
 - entre na pasta do projeto instale as dependências:
 
@@ -66,7 +70,7 @@ ciclano@email.com
 (usuário do tipo cliente)
 ```
 
-- caso não tenha recebido um e-mail com a url da api e a api key, solicite via e-mail a judsonmelobandeira@gmail.com.br e com as informações edite a variável
+- caso não tenha recebido um e-mail com a api key, solicite via e-mail a judsonmelobandeira@gmail.com.br e edite a variável
 
 ```
 API_KEY=keyhere
@@ -83,4 +87,8 @@ php artisan key:gen
 php artisan serve
 ```
 
-- acesse com http://localhost:8000
+- acesse com 
+
+```
+http://localhost:8000
+```
