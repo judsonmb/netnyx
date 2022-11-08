@@ -16,11 +16,12 @@ class Rent extends Model
      */
     protected $fillable = [
         'user_id',
+        'media_id',
         'expire_at',
     ];
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 }

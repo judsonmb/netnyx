@@ -27,5 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     Route::get('/search/{movie?}/{page?}', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
     Route::get('/result/{id}/{media}', [App\Http\Controllers\RentController::class, 'show'])->name('details');
-    Route::get('/rent/{id}', [App\Http\Controllers\RentController::class, 'rent'])->name('rent');
+    Route::get('/rent/{id}/{media}', [App\Http\Controllers\RentController::class, 'rent'])->name('rent');
+
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 });
