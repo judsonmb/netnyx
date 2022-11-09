@@ -11,23 +11,23 @@
 
             <div class="card-body">
                 @php
-                    $name = '';
                     if (isset($result['original_name'])) {
                         $name = $result['original_name'];
                     } else if (isset($result['original_title'])) {
                         $name = $result['original_title'];
                     } else if (isset($result['name'])) {
                         $name = $result['name'];
-                    } 
+                    } else {
+                        $name = '';
+                    }
 
-                    $img = '';
                     if (isset($result['backdrop_path'])) {
-                        $img = $result['backdrop_path'];
+                        $url = config('constants.imgUrl') . $result['backdrop_path'];
+                    } else if (isset($result['poster_path'])) {
+                        $url = config('constants.imgUrl') . $result['poster_path'];
+                    } else {
+                        $url = null;
                     }
-                    else if (isset($result['poster_path'])) {
-                        $img = $result['poster_path'];
-                    }
-                    $url = ($img != '') ? "https://image.tmdb.org/t/p/original$img" : null;
                 @endphp
                 <div> 
                     <h3>{{ $name }}</h3>

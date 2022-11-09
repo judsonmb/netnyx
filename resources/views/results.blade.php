@@ -40,22 +40,24 @@
                         <tbody>
                             @foreach($results['results'] as $result)
                                 @php 
-                                    $img = '';
+                                    $url = '';
                                     if (isset($result['poster_path'])) {
-                                        $img = $result['poster_path'];
+                                        $url = config('constants.imgUrl') . $result['poster_path'];
                                     } else if (isset($result['backdrop_path'])) {
-                                        $img = $result['backdrop_path'];
+                                        $url = config('constants.imgUrl') . $result['backdrop_path'];
+                                    } else {
+                                        $url = null;
                                     }
-                                    $url = ($img != '') ? "https://image.tmdb.org/t/p/original$img" : null;
                                     
-                                    $name = '';
                                     if (isset($result['original_name'])) {
                                         $name = $result['original_name'];
                                     } else if (isset($result['original_title'])) {
                                         $name = $result['original_title'];
                                     } else if (isset($result['name'])) {
                                         $name = $result['name'];
-                                    } 
+                                    } else {
+                                        $name = '';
+                                    }
                                     
                                     $resume = '';
                                     if (isset($result['overview'])) {
