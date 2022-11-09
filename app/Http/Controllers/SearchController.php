@@ -13,13 +13,14 @@ class SearchController extends Controller
 
     public function __construct()
     {
+        $this->middleware('customer');
         $this->service = new SearchService();
     }
 
     public function search(SearchRequest $request, string $movie = "a", int $page = 1) 
     {
-        $results = $this->service->searchMovieOrSerie($request->all(), $movie, $page);
         $movie = $request->movie ?? $movie;
-        return view(Auth::user()->role.'.search-results', compact('results', 'movie'));
+        $results = $this->service->searchMovieOrSerie($movie, $page);
+        return view('results', compact('results', 'movie'));
     }
 }

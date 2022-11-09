@@ -9,10 +9,15 @@ use Auth;
 
 class RentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('customer');
+    }
+
     public function show(Request $request, int $id, string $media)
     {
         $result = (new SearchService)->getMovieOrSerie($id, $media);
-        return view(Auth::user()->role.'.rent', compact('result','media'));
+        return view('rent', compact('result','media'));
     }
 
     public function rent(Request $request, int $id, string $media) 
@@ -20,8 +25,8 @@ class RentController extends Controller
         $movieOrSerie = (new SearchService)->getMovieOrSerie($id, $media);
         $rented = (new RentService)->rent($id, $movieOrSerie);
         if ($rented) {
-            return view(Auth::user()->role.'.home')->with('success','Alugado com sucesso!');
+            return view('home')->with('success','Alugado com sucesso!');
         }
-        return view(Auth::user()->role.'.home')->with('error','Ocorreu algum erro interno no servidor!');
+        return view('home')->with('error','Ocorreu algum erro interno no servidor!');
     }
 }

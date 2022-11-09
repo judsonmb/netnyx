@@ -8,9 +8,14 @@ use Auth;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function index()
     {
         $rents = (new RentService)->getRents();
-        return view(Auth::user()->role.'.admin', compact('rents'));
+        return view('rents', compact('rents'));
     }
 }

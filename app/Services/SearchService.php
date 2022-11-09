@@ -5,10 +5,9 @@ use Http;
 
 class SearchService
 {
-    public function searchMovieOrSerie(array $data, string $movie, int $page)
+    public function searchMovieOrSerie(string $movie, int $page)
     {
-        $query = $data['movie'] ?? $movie;
-        $url = config('constants.apiUrl') . "/search/multi?api_key=".config('constants.apiKey')."&query=$query&page=$page";
+        $url = config('constants.apiUrl') . "/search/multi?api_key=".config('constants.apiKey')."&query=$movie&page=$page";
         return Http::get($url)->json();
     }
 
