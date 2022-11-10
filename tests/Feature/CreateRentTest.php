@@ -19,7 +19,7 @@ class CreateRentTest extends TestCase
             'user_id' => $user->id,
             'media_id' => 60574,
             'media_name' => 'Peaky Blinders',
-            'media_img' => 'https://image.tmdb.org/t/p/original/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg'
+            'media_img' => config('constants.imgUrl').'/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg'
         ]);
     }
 
