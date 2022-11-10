@@ -30,6 +30,14 @@ DB_PASSWORD=
 docker run --rm -v $(pwd):/app composer install
 ```
 
+- mudar a variável de host do banco de dados do .env
+
+```
+DB_HOST=db
+```
+
+- rodar
+
 ```
 docker-compose up -d
 ```
@@ -124,3 +132,6 @@ php artisan serve
 ```
 http://localhost:8000
 ```
+
+## Para rodar os testes
+php artisan test
