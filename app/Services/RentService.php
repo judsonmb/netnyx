@@ -13,34 +13,10 @@ class RentService
         $rent = new Rent();
         $rent->user_id = Auth::user()->id;
         $rent->media_id = $id;
-        $rent->media_name = $this->getMediaName($mediaArray);
-        $rent->media_img = $this->getMediaImgUrl($mediaArray);
+        $rent->media_name = getMediaName($mediaArray);
+        $rent->media_img = getMediaPosterUrl($mediaArray);
         $rent->expire_at = Carbon::now()->addDays(2);
         return $rent->save();
-    }
-
-    public function getMediaName(array $mediaArray)
-    {
-        $name = '';
-        if (isset($mediaArray['original_name'])) {
-            $name = $mediaArray['original_name'];
-        } else if (isset($mediaArray['original_title'])) {
-            $name = $mediaArray['original_title'];
-        } else if (isset($mediaArray['name'])) {
-            $name = $mediaArray['name'];
-        }
-        return $name;
-    }
-
-    public function getMediaImgUrl(array $mediaArray)
-    {
-        $url = null;
-        if (isset($mediaArray['poster_path'])) {
-            $url = config('constants.imgUrl') . $mediaArray['poster_path'];
-        } else if (isset($mediaArray['backdrop_path'])) {
-            $url = config('constants.imgUrl') . $mediaArray['backdrop_path'];
-        }
-        return $url;
     }
 
     public function getRents()
