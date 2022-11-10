@@ -21,26 +21,24 @@ class RentService
 
     public function getMediaName(array $mediaArray)
     {
+        $name = '';
         if (isset($mediaArray['original_name'])) {
             $name = $mediaArray['original_name'];
         } else if (isset($mediaArray['original_title'])) {
             $name = $mediaArray['original_title'];
         } else if (isset($mediaArray['name'])) {
             $name = $mediaArray['name'];
-        } else {
-            $name = null;
         }
         return $name;
     }
 
     public function getMediaImgUrl(array $mediaArray)
     {
+        $url = null;
         if (isset($mediaArray['poster_path'])) {
             $url = config('constants.imgUrl') . $mediaArray['poster_path'];
         } else if (isset($mediaArray['backdrop_path'])) {
             $url = config('constants.imgUrl') . $mediaArray['backdrop_path'];
-        } else {
-            $url = null;
         }
         return $url;
     }

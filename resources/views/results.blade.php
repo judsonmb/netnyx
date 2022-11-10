@@ -40,23 +40,20 @@
                         <tbody>
                             @foreach($results['results'] as $result)
                                 @php 
-                                    $url = '';
+                                    $url = null;
                                     if (isset($result['poster_path'])) {
                                         $url = config('constants.imgUrl') . $result['poster_path'];
                                     } else if (isset($result['backdrop_path'])) {
                                         $url = config('constants.imgUrl') . $result['backdrop_path'];
-                                    } else {
-                                        $url = null;
                                     }
                                     
+                                    $name = '';
                                     if (isset($result['original_name'])) {
                                         $name = $result['original_name'];
                                     } else if (isset($result['original_title'])) {
                                         $name = $result['original_title'];
                                     } else if (isset($result['name'])) {
                                         $name = $result['name'];
-                                    } else {
-                                        $name = '';
                                     }
                                     
                                     $resume = '';
