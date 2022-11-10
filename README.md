@@ -1,30 +1,9 @@
 # Instalação
 
-**Instalações prévias**
-
-- php7.4;
-- apache2;
-- mysql;
-- composer;
-
-**Instalar as dependências php necessárias para rodar o projeto**
-
-```
-sudo apt install php7.4-{simplexml,zip,intl,mbstring,dom,curl,gd,mysql}
-```
-
-**Instalando o projeto github** 
-
 - clone o projeto em seu computador
 
 ```
 git clone https://github.com/judsonmb/netnyx.git
-```
-
-- entre na pasta do projeto instale as dependências:
-
-```
-composer install
 ```
 
 - criar arquivo .env
@@ -42,6 +21,59 @@ DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=
+```
+## CASO USE DOCKER
+
+- Rode os comandos
+
+```
+docker run --rm -v $(pwd):/app composer install
+```
+
+```
+docker-compose up -d
+```
+
+```
+sudo chmod 777 -R storage
+```
+
+```
+sh setup.sh
+```
+
+- Acesse com
+
+```
+localhost
+ou
+localhost:80
+```
+
+- Caso perceba que o banco não está funcionando, no docker-compose altere manualmente as seguintes variáveis com os seus respectivos valores inseridos no .env
+
+```
+MYSQL_DATABASE: ${DB_DATABASE}
+MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+```
+
+## CASO NÃO USE DOCKER
+
+**Instalações prévias**
+
+- php7.4;
+- apache2;
+- mysql;
+- composer;
+
+- Instalar as dependências necessárias para rodar o projeto
+
+```
+sudo apt install php7.4-{simplexml,zip,intl,mbstring,dom,curl,gd,mysql}
+```
+
+```
+composer install
 ```
 
 - rode a migração e os dados de teste
