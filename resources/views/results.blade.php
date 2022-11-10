@@ -40,34 +40,10 @@
                         <tbody>
                             @foreach($results['results'] as $result)
                                 @php 
-                                    $url = null;
-                                    if (isset($result['poster_path'])) {
-                                        $url = config('constants.imgUrl') . $result['poster_path'];
-                                    } else if (isset($result['backdrop_path'])) {
-                                        $url = config('constants.imgUrl') . $result['backdrop_path'];
-                                    }
-                                    
-                                    $name = '';
-                                    if (isset($result['original_name'])) {
-                                        $name = $result['original_name'];
-                                    } else if (isset($result['original_title'])) {
-                                        $name = $result['original_title'];
-                                    } else if (isset($result['name'])) {
-                                        $name = $result['name'];
-                                    }
-                                    
-                                    $resume = '';
-                                    if (isset($result['overview'])) {
-                                        $resume = $result['overview'];
-                                    } 
-
-                                    $date = '';
-                                    if (isset($result['first_air_date'])) {
-                                        $date = $result['first_air_date'];
-                                    } else if (isset($result['release_date'])) {
-                                        $date = $result['release_date'];
-                                    }
-                                    $year = explode('-', $date)[0];
+                                    $url = getMediaPosterUrl($result);
+                                    $name = getMediaName($result);                                    
+                                    $resume = getMediaResume($result);
+                                    $year = getMediaYear($result);
                                 @endphp
                                 <tr>
                                     <th scope="row">
